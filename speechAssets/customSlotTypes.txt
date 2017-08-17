@@ -1,0 +1,4 @@
+SLOT_TYPE
+thing1
+thing2
+thing3

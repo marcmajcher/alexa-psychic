@@ -1,0 +1,20 @@
+{
+  "intents": [
+    {
+      "intent": "SampleIntent",
+      "slots": [{
+        "name": "Slot",
+        "type": "SLOT_TYPE"
+        }]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

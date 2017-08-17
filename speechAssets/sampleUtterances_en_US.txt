@@ -1,0 +1,2 @@
+SampleIntent {Input}
+SampleIntent for {Input}
