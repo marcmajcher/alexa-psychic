@@ -1,10 +1,10 @@
 {
   "intents": [
     {
-      "intent": "SampleIntent",
+      "intent": "NumberGuessIntent",
       "slots": [{
-        "name": "Slot",
-        "type": "SLOT_TYPE"
+        "name": "Words",
+        "type": "AMAZON.LITERAL"
         }]
     },
     {

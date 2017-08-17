@@ -4,13 +4,46 @@
 
 const Alexa = require('alexa-sdk');
 
-const APP_ID = 'APP_ID'; // TODO replace with your app ID (OPTIONAL).
-const SKILL_NAME = 'SKILL_NAME';
-const HELP_MESSAGE = 'You can ask me for ... you can say exit ... What can I do for you?';
-const HELP_REPROMPT = 'Would you like me to...?';
+const APP_ID = 'alexa-psychic'; // TODO replace with your app ID (OPTIONAL).
+const SKILL_NAME = 'Alexa Psychic';
+const HELP_MESSAGE = 'Would you like me to guess a number?';
+const HELP_REPROMPT = 'Would you like me to guess a number?';
 const STOP_MESSAGE = 'Good bye.';
 // const NOT_FOUND_MESSAGE = 'I don\'t know how to do that. Please ask for...';
 // const NOT_FOUND_REPROMPT = 'Would you like me to give you ...?';
+
+const codewords = {
+  i: 1,
+  go: 2,
+  can: 3,
+  look: 4,
+  please: 5, // quick
+  will: 6, // please
+  quick: 7, // will
+  then: 8, // now
+  now: 9, // now then
+  favor: 0,
+  next: -1
+};
+
+const decodeNumber = (str) => {
+  let out = '';
+  let lastNumber = -1;
+
+  str.toLowerCase().split(/\s+/).forEach((word) => {
+    if (word in codewords) {
+      if (codewords[word] === -1 && lastNumber >= 0) {
+        out += lastNumber.toString();
+      }
+      else {
+        out += codewords[word].toString();
+        lastNumber = codewords[word];
+      }
+    }
+  });
+
+  return out;
+};
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
@@ -19,9 +52,11 @@ const handlers = {
   SessionEndedRequest: function SessionEndedRequest() {
     this.emit(':tell', STOP_MESSAGE);
   },
-  SAMPLEIntent: function GenerateIntent() {
-    if (true) {
-      const speechOutput = 'Test';
+  NumberGuessIntent: function NumberGuessIntent() {
+    const wordSlot = this.event.request.intent.slots.Words;
+    console.log(this);
+    if (wordSlot && wordSlot.value) {
+      const speechOutput = 'Test: ' + decodeNumber(wordSlot.value);
       this.emit(':tellWithCard', speechOutput, SKILL_NAME, speechOutput);
     }
     else {
