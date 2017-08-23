@@ -26,6 +26,8 @@ const codewords = {
   next: -1
 };
 
+// Please I need you to go into my mind and guess the number
+
 const decodeNumber = (str) => {
   let out = '';
   let lastNumber = -1;
