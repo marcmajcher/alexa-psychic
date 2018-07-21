@@ -1,3 +1,7 @@
-# alexa-template
+# alexa-psychic
 
-Base files for new Amazon Alexa projects
+Next up:
+* Numbers
+* Colors
+* Cards
+* Letters/Items
